@@ -13,5 +13,7 @@ public interface ProfileDaoRepository extends JpaRepository<ProfileEntity, Integ
 	public  Optional<ProfileEntity>   findByUsernameAndPassword(String username,String password);
 	public  Optional<ProfileEntity>   findByEmail(String Email);
 	public  ProfileEntity findByUsername(String username);
+	
+	public ProfileEntity findByHphoto(byte[]  hphoto );
 
 }

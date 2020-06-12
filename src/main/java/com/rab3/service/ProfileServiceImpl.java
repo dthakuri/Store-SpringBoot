@@ -50,6 +50,14 @@ public class ProfileServiceImpl  implements  ProfileService{
 		return profileDao.findByEmail(email).get().getPassword();
 	}
 	
+	
+	@Override
+	public void updateImage(byte[] image) {
+		ProfileEntity profileEntity = new ProfileEntity();
+		profileDao.findByHphoto(image);
+		profileEntity.setHphoto(image);
+	}
+	
 	@Override
 	public String persist(ProfileDTO profileDTO) {
 		ProfileEntity profileEntity=new ProfileEntity();
@@ -74,9 +82,18 @@ public class ProfileServiceImpl  implements  ProfileService{
 	}
 	
 	@Override
-public 	String updateProfila(ProfileDTO profileDTO) {
+public 	String updateProfila(ProfileDTO profileDTO) {		
 		ProfileEntity profileEntity=new ProfileEntity();
+		if(profileDTO.getPhoto()==null) {
+		//BeanUtils.copyProperties(profileDTO, profileEntity, );
+		}
 		BeanUtils.copyProperties(profileDTO, profileEntity);
+		try {
+			profileEntity.setHphoto(profileDTO.getPhoto().getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		profileDao.save(profileEntity);
 		return "done";
 	}
@@ -108,6 +125,10 @@ public 	String updateProfila(ProfileDTO profileDTO) {
 		return profileDTO;
 		
 	}
+
+
+
+	
 	
 
 }

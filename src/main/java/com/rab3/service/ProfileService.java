@@ -1,7 +1,5 @@
 package com.rab3.service;
 
-
-
 import java.util.List;
 
 import com.rab3.controller.dto.ProfileDTO;
@@ -27,6 +25,8 @@ public interface ProfileService {
 
 	ProfileDTO search(String email);
 
+	 void updateImage(byte[] image);
 
+	
 
 }

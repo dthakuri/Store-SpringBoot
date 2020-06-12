@@ -60,6 +60,17 @@ public class ProfileController {
 		return "redirect:/profiles";
 	}
 
+	@PostMapping("/imageUpdate")
+	public String updateImage(@ModelAttribute ProfileDTO profileDTO, Model mode) {
+
+		ProfileDTO profileDTO1 = profileService.findProfileById(profileDTO.getAid());
+
+		profileDTO1.setPhoto(profileDTO.getPhoto());
+
+		profileService.updateProfila(profileDTO1);
+		return "redirect:/profiles";
+	}
+
 	@GetMapping("/imageLoader")
 	public void showImage(@RequestParam int aid, HttpServletResponse httpServletResponse) throws IOException {
 		byte[] photo = profileService.findPhotoById(aid);

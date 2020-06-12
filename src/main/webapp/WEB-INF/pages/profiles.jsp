@@ -66,7 +66,21 @@
             <td><%=dto.getEmail() %></td>
               <td><%=dto.getGender() %></td>
         <td>
+        
+           
+           
+           
+           <form action="imageUpdate" method="post" enctype="multipart/form-data">
         <img src="imageLoader?aid=<%=dto.getAid() %>"  class="zoom">  
+        <br>
+        <input type="hidden" name="aid" value=<%=dto.getAid() %>> 
+           <input type="file" name="photo"  class="form-control">
+      <br/>
+      <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        
+        
+        
         
         </td>
          <td>
@@ -74,6 +88,8 @@
          <img src="images/icons8-delete-100.png"  style="height: 80px;">
          </a>
          &nbsp;  &nbsp;  &nbsp;
+        
+        
          <a href="editProfile?aid=<%=dto.getAid() %>">
 					<img src="images/edit.png" style="height: 24px;">
 				</a>
