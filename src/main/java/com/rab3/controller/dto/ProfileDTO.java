@@ -4,11 +4,16 @@ import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * 
  * @author nagendra
  *
  */
+@JsonInclude(value = Include.NON_NULL)
 public class ProfileDTO {
 	private int aid;
 	private String username;
@@ -17,10 +22,20 @@ public class ProfileDTO {
 	private String email;
 	private String gender;
 	private MultipartFile photo;
+
+	@JsonIgnore
+	private byte[] pphoto;
 	private Timestamp doe;
 	private String role;
-	
-	
+
+	public byte[] getPphoto() {
+		return pphoto;
+	}
+
+	public void setPphoto(byte[] pphoto) {
+		this.pphoto = pphoto;
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -84,7 +99,6 @@ public class ProfileDTO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 
 	public MultipartFile getPhoto() {
 		return photo;

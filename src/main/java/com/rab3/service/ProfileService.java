@@ -21,11 +21,12 @@ public interface ProfileService {
 
 	List<ProfileDTO> findProfiles();
 
-	String deleteByusername(int aid);
 
 	ProfileDTO search(String email);
 
 	 void updateImage(byte[] image);
+
+	String deleteById(int aid);
 
 	
 

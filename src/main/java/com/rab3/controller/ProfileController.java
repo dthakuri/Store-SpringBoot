@@ -55,7 +55,7 @@ public class ProfileController {
 
 	@GetMapping("/deleteProfile")
 	public String deleteProfile(@RequestParam int aid, Model model) {
-		profileService.deleteByusername(aid);
+		profileService.deleteById(aid);
 		model.addAttribute("msg", "profile is successfully deleted!!");
 		return "redirect:/profiles";
 	}
