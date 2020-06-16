@@ -25,6 +25,25 @@ public class EmailService {
 	@Autowired
 	SpringTemplateEngine templateEngine;
 
+	
+	public void  emailSender(String email,String message){
+		 MimeMessage mimeMessage= emailSender.createMimeMessage();
+			
+		  try { 
+			MimeMessageHelper helper = new  MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
+			helper.setTo(email);
+			helper.setText(message,true);
+			helper.setSubject("test");
+			helper.setFrom("rab3java2020@gmail.com");//you can write any email
+			emailSender.send(mimeMessage);
+ 
+		  } catch (MessagingException e) {
+		  e.printStackTrace(); }
+
+		
+	}
+
+	
 	public void emailSender(String text) {
 		 MimeMessage mimeMessage= emailSender.createMimeMessage();
 		
@@ -65,8 +84,8 @@ public class EmailService {
 			
 		  try { 
 			MimeMessageHelper helper = new  MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
-		    Context context=new Context();
-			String html=templateEngine.process("temp1",context);
+		   // Context context=new Context();
+			//String html=templateEngine.process("temp1",context);
 			helper.addAttachment("edit.png", new ClassPathResource("resources/static/images/edit.png"));
 			helper.setTo("javahunk001@gmail.com");
 			helper.setText("image test");

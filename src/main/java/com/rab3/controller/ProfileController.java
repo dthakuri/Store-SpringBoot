@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rab3.controller.dto.ProfileDTO;
+import com.rab3.service.EmailService;
 import com.rab3.service.ProfileService;
 
 @Controller
@@ -23,6 +24,21 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 
+	@Autowired
+	EmailService emailService;
+	
+	@GetMapping("/email")
+	public String emailsender(@RequestParam int aid, Model model) {
+		//List<ProfileDTO> profileDTOs = profileService.findProfiles(); emailService.emailSender(profileDTOs);
+		//emailService.emailSender();
+		ProfileDTO pdto= profileService.findProfileById(aid);
+		String email = pdto.getEmail();
+		String message= "hello "+ pdto.getName() + "this is test email";
+		emailService.emailSender( email, message);
+		model.addAttribute("sent","sussecsssulfy sent ");	
+		 return "redirect:/profiles";
+	}
+	
 	@GetMapping("/forgetPass")
 	public String forgetPasswordPage() {
 		return "forgotPassword";
@@ -62,12 +78,12 @@ public class ProfileController {
 
 	@PostMapping("/imageUpdate")
 	public String updateImage(@ModelAttribute ProfileDTO profileDTO, Model mode) {
-
 		ProfileDTO profileDTO1 = profileService.findProfileById(profileDTO.getAid());
 
 		profileDTO1.setPhoto(profileDTO.getPhoto());
 
 		profileService.updateProfila(profileDTO1);
+	
 		return "redirect:/profiles";
 	}
 

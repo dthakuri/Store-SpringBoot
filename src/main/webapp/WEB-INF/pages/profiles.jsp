@@ -24,7 +24,7 @@
   height: 120px;
 }
 .zoom:hover {
-  transform: scale(2.0); /* (200% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.5); /* (200% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 </style>
 	
@@ -61,11 +61,21 @@
     for(ProfileDTO dto:profileDTOs) {
     %>
       <tr>
-        <td><%=dto.getUsername() %></td>
+        <td><%=dto.getUsername() %>
+           <br/> <br/> <br/>
+          <form action="email" >
+            <input type="hidden" name="aid" value=<%=dto.getAid() %>> 
+      <button type="submit" class="btn btn-danger">Send Email</button>
+      
+       <span style="font-size: 18px;color: red;">${sent}</span>
+        </form>
+        
+      
+        </td>
           <td><%=dto.getName() %></td>
             <td><%=dto.getEmail() %></td>
               <td><%=dto.getGender() %></td>
-        <td>
+        <td style="width: 100px">
         
            
            
@@ -74,7 +84,7 @@
         <img src="imageLoader?aid=<%=dto.getAid() %>"  class="zoom">  
         <br>
         <input type="hidden" name="aid" value=<%=dto.getAid() %>> 
-           <input type="file" name="photo"  class="form-control">
+           <input type="file" name="photo"  class="form-control" >
       <br/>
       <button type="submit" class="btn btn-primary">Update</button>
         </form>

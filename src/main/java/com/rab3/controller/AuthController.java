@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rab3.controller.dto.ProfileDTO;
-import com.rab3.service.EmailService;
 import com.rab3.service.ProfileService;
 
 @Controller
@@ -56,17 +55,7 @@ public class AuthController {
 	}
 	
 	
-	@Autowired
-	EmailService emailService;
-	
-	@GetMapping("/email")
-	public String emailsender() {
-		
-		//emailService.emailSender("hello, testing");
-		//List<ProfileDTO> profileDTOs = profileService.findProfiles(); emailService.emailSender(profileDTOs);
-		emailService.emailSender();
-		return "email";
-	}
+
 	
 	
 	
