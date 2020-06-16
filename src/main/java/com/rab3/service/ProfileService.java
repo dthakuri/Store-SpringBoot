@@ -28,6 +28,7 @@ public interface ProfileService {
 
 	String deleteById(int aid);
 
+
 	
 
 }
